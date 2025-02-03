@@ -21,4 +21,9 @@ public class PostServiceImpl implements PostService {
     public List<Post> getAllPost() {
         return repo.findAll();
     }
+
+    @Override
+    public Post addNewPost(Post post) {
+        return repo.save(post);
+    }
 }

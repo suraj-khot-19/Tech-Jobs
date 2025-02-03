@@ -37,8 +37,13 @@ Key components of the backend:
 - **MongoDB**: Cloud-based NoSQL database used to store job posts.
 - **Spring Boot**: Handles RESTful endpoints for CRUD operations on job posts.
 - **Spring Data MongoDB**: Manages data access for MongoDB.
-
-
+-  **Output**
+   - All Post End Point
+     <img src="output/p1.png" alt="img"/>
+   
+   - Adding Job Post Endpoint
+     <img src="output/p2.png" alt="img"/>
+   
 ---
 
 ## Frontend Overview

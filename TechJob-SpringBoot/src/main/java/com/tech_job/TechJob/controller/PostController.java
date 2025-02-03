@@ -4,9 +4,7 @@ import com.tech_job.TechJob.model.Post;
 import com.tech_job.TechJob.service.PostService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +22,10 @@ public class PostController {
     @GetMapping("/posts")
     public ResponseEntity<List<Post>> getAllPost() {
         return new ResponseEntity<>(service.getAllPost(), HttpStatus.OK);
+    }
+
+    @PostMapping("/new/post")
+    public ResponseEntity<Post> addNewPost(@RequestBody Post post){
+        return new ResponseEntity<>(service.addNewPost(post),HttpStatus.OK);
     }
 }
