@@ -7,11 +7,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "techjob")
+@Document(collection = "thesuraj")
 public class Post {
-    private Object _id;
     private String desc;
     private int exp;
     private String profile;
-    private String[] skills;
+    private String skills[];
 }
