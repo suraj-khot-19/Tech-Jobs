@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Tech-Jobs.iml" filepath="$PROJECT_DIR$/.idea/Tech-Jobs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TechJob-SpringBoot/TechJob.iml" filepath="$PROJECT_DIR$/TechJob-SpringBoot/TechJob.iml" />
     </modules>
   </component>
 </project>
