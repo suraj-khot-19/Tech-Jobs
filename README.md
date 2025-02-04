@@ -6,7 +6,11 @@
 - [Installation](#installation)
   - [Backend Setup](#backend-setup)
   - [Frontend Setup](#frontend-setup)
+
+- [Environmental Variable Setup](#environmental-variable-setup)
+- [Mongodb Setup](#mongodb-setup)
 - [Running the Application](#running-the-application)
+
 ---
 
 ## Introduction
@@ -38,11 +42,12 @@ Key components of the backend:
 - **Spring Boot**: Handles RESTful endpoints for CRUD operations on job posts.
 - **Spring Data MongoDB**: Manages data access for MongoDB.
 -  **Output**
+
    - All Post End Point
-     <img src="output/p1.png" alt="img"/>
+     <img src="output/p2.png" alt="img"/>
    
    - Adding Job Post Endpoint
-     <img src="output/p2.png" alt="img"/>
+     <img src="output/p1.png" alt="img"/>
    
 ---
 
@@ -88,6 +93,24 @@ The frontend is built with **React**. It communicates with the backend through *
    npm start
 
 ---
+
+## Environmental Variable Setup
+
+1. Add .env file in root of **TechJob-SpringBoot** directory
+   - like this as shown in image(Also need to configure IntelliJ IDE Configuration)
+    ```
+   .env ==>
+   
+    DATASOURCE_URL=here
+    DATABASE_NAME=here
+    ```
+   <img src="output/p4.png" alt="img"/>
+
+   **Do not forget to add .env in .gitignore file**
+---
+## Mongodb Setup
+
+   <img src="output/p3.png" alt="img"/>
 
 ## Running the Application
 
