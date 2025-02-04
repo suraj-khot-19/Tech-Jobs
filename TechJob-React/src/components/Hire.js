@@ -48,8 +48,7 @@ function Hire() {
 
     return (
         <>
-            <div className="container" >
-                <h1 className="text-center py-4">💻 Tech Job 💸</h1>
+            <div className="container" style={{height:"100vh"}} >
                 <form onSubmit={handleSub}>
                     {/* Profile */}
                     <div className="row mb-4">

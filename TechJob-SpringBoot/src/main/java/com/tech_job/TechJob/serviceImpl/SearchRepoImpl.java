@@ -34,7 +34,7 @@ public class SearchRepoImpl implements SearchRepository {
         AggregateIterable<Document> result = collection.aggregate(Arrays.asList(new Document("$search",
                         new Document("text",
                                 new Document("query", key)  /// passing key here as search key
-                                        .append("path", Arrays.asList("skills", "profile", "desc")))),
+                                        .append("path", Arrays.asList("skills", "profile", "desc", "exp")))),
                 new Document("$sort",
                         new Document("exp", 1L)),
                 new Document("$limit", 5L)));

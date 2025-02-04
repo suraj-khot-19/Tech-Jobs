@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @Document(collection = "techjob")
 public class Post {
+    private String id;
     private String desc;
     private int exp;
     private String profile;
