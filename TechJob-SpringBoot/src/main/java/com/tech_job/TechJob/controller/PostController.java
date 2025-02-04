@@ -14,14 +14,11 @@ import java.util.List;
 @RestController
 public class PostController {
 
-    private final PostService service;
+    @Autowired
+    PostService service;
+
     @Autowired
     SearchRepoImpl searchService;
-
-    public PostController(PostService service) {
-        super();
-        this.service = service;
-    }
 
     @GetMapping("/posts")
     public ResponseEntity<List<Post>> getAllPost() {

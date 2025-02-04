@@ -139,12 +139,31 @@ display them to the user. The React app is designed with components that handle:
     ```
 - for search feature follow this steps
 
-    1. <img src="output/p5.png" alt="img"/> 
-    2. <img src="output/p6.png" alt="img"/>
-    3. <img src="output/p7.png" alt="img"/>
-    
-- **Now you are ready with search feature**
+    1. click on create a search index
+       <img src="output/p5.png" alt="img"/>
+    2. click on visual editor
+       <img src="output/p6.png" alt="img"/>
+    3. name it wrt database and document name
+       <img src="output/p7.png" alt="img"/>
 
+- **Now you are ready with search feature**
+- creating dummy aggregation pipeline to get a code from mongodb itself
+    1. Open aggregation tab
+       <img src="output/p8.png" alt="img"/>
+    2. stage for search
+       <img src="output/p9.png" alt="img"/>
+    3. stage for sort
+       <img src="output/p10.png" alt="img"/>
+    4. stage for limit the posts
+       <img src="output/p11.png" alt="img"/>
+    5. now click on explore to language to get a java code
+       <img src="output/p12.png" alt="img"/>
+    6. java code
+       <img src="output/p13.png" alt="img"/>
+    7. now output with endpoint
+       <img src="output/p14.png" alt="img"/>
+
+---
 ## Running the Application
 
 1. **Backend**: The backend will be running on http://localhost:8080.
