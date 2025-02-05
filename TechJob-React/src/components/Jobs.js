@@ -5,7 +5,8 @@ function Jobs() {
     // state
     const [data, setData] = useState([]);
     const [searchKey, setSearchKey] = useState("");
-    const [headToTop, setHeadToTop] = useState("")
+    const [headToTop, setHeadToTop] = useState("");
+    const [loading, setloading] = useState(true)
 
     // Fetch job data from API
     const fetchData = async () => {
@@ -26,6 +27,10 @@ function Jobs() {
     useEffect(() => {
         fetchData();
     }, []);
+
+    setTimeout(() => {
+        setloading(false);
+    }, 1200);
 
     // Handle search functionality
     const handelOnClick = async (e) => {
@@ -61,11 +66,20 @@ function Jobs() {
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={searchKey} name='key' onChange={(e) => {
                             setSearchKey(e.target.value)
                         }} />
-                        <button class="btn btn-outline-warning" type="submit" onClick={handelOnClick}>Search</button>
+                        <button disabled={searchKey.length < 2} class="btn btn-outline-warning" type="submit" onClick={handelOnClick}>Search</button>
                     </form>
                 </div>
             </nav>
 
+
+            {/* Loading Overlay */}
+            {loading && (
+                <div className="position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center bg-light" style={{ opacity: 0.8, zIndex: 1050 }}>
+                    <span className="fs-4 fw-bold" style={{ color: "black" }}>Loading...</span>
+                </div>
+            )}
+
+            {/* search indicator */}
             {
                 headToTop &&
                 <div className='ms-3 my-2'>

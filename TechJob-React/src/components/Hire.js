@@ -10,6 +10,8 @@ function Hire() {
         profile: "", exp: 1, skills: [], disc: "",
     });
 
+    const [loading, setloading] = useState(false)
+
     const handleOnChange = (e) => {
         const { name, value, type, checked } = e.target;
 
@@ -31,6 +33,8 @@ function Hire() {
     const handleSub = async (e) => {
         e.preventDefault();
         // console.log(data);
+        setloading(true);
+
         const url = "http://localhost:8080/api/tech/job/new/post";
 
         const response = await fetch(url, {
@@ -41,14 +45,26 @@ function Hire() {
 
         const json = await response.json();
         setTimeout(() => {
+            setloading(false);
             navigate("/");
-        }, 1000);
+        }, 1500);
     };
 
 
     return (
         <>
-            <div className="container" style={{height:"100vh"}} >
+            <div className="container" style={{ height: "100vh" }} >
+
+
+                {/* Loading Overlay */}
+                {loading && (
+                    <div className="position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center bg-light" style={{ opacity: 0.8, zIndex: 1050 }}>
+                        <span className="fs-4 fw-bold" style={{ color: "black" }}>Loading...</span>
+                    </div>
+                )}
+
+                <h1 className="text-center py-4">💻 Tech Job 💸</h1>
+
                 <form onSubmit={handleSub}>
                     {/* Profile */}
                     <div className="row mb-4">
