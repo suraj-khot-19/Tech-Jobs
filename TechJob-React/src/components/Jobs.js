@@ -6,7 +6,7 @@ function Jobs() {
     const [data, setData] = useState([]);
     const [searchKey, setSearchKey] = useState("");
     const [headToTop, setHeadToTop] = useState("");
-    const [loading, setloading] = useState(true)
+    const [loading, setloading] = useState(true);
 
     // Fetch job data from API
     const fetchData = async () => {
@@ -28,6 +28,7 @@ function Jobs() {
         fetchData();
     }, []);
 
+    //initial loading
     setTimeout(() => {
         setloading(false);
     }, 1200);
@@ -52,21 +53,48 @@ function Jobs() {
         }
     };
 
+    // handel delete functionality
+    const handelDelete = async (id) => {
+        if (!id) {
+            return;
+        }
+        try {
+            setloading(true);
+            const url = `http://localhost:8080/api/tech/job/delete/${id}`;
+
+            const response = await fetch(url, {
+                method: "DELETE",
+            });
+
+            if (response.status === 200) {
+
+                setTimeout(() => {
+                    fetchData(); // Refresh job list
+                }, 500);
+            }
+        } catch (error) {
+            console.log(error)
+        } finally {
+            setTimeout(() => {
+                setloading(false);
+            }, 500);
+        }
+    }
     return (
         <>
             {/* navbar */}
             <nav className="navbar bg-body-tertiary" data-bs-theme="dark">
                 <div className="container-fluid">
                     <div className="navbar-brand">
-                        <Link class="navbar-brand ms-3" to="/">Tech Job</Link>
+                        <Link className="navbar-brand ms-3" to="/">Tech Job</Link>
                     </div>
 
 
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={searchKey} name='key' onChange={(e) => {
+                    <form className="d-flex" role="search">
+                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={searchKey} name='key' onChange={(e) => {
                             setSearchKey(e.target.value)
                         }} />
-                        <button disabled={searchKey.length < 2} class="btn btn-outline-warning" type="submit" onClick={handelOnClick}>Search</button>
+                        <button disabled={searchKey.length < 2} className="btn btn-outline-warning" type="submit" onClick={handelOnClick}>Search</button>
                     </form>
                 </div>
             </nav>
@@ -103,7 +131,7 @@ function Jobs() {
                     <div className="container">
                         <div className="row gap-3 py-2">
                             {data.map((e) => (
-                                <SingleJobPost job={e} key={e.id} />
+                                <SingleJobPost job={e} key={e.id} handelDelete={handelDelete} />
                             ))}
                         </div>
                     </div>

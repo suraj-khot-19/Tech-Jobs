@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 
-function SingleJobPost({ job }) {
+function SingleJobPost({ job, handelDelete }) {
     const [hover, sethover] = useState(false);
-
     return (
         <div>
             {/* card */}
@@ -20,7 +19,11 @@ function SingleJobPost({ job }) {
                     hover && <div className='me-2 mb-2 position-absolute bottom-0 end-0'>
                         <div className="d-flex justify-content-end align-items-center">
                             <button type="button" className="btn btn-outline-info me-2 px-4"> <img height="20px" width="20px" src="https://img.icons8.com/?size=100&id=86374&format=png&color=000000" alt="edit" /> Edit</button>
-                            <button type="button" className="btn btn-outline-danger"><img height="20px" width="20px"  src="https://img.icons8.com/?size=100&id=FgOBVsURv5ar&format=png&color=000000" alt="Delete" />Delete</button>
+                            <button type="button" className="btn btn-outline-danger" onClick={
+                                (e) => {
+                                    e.preventDefault();
+                                    handelDelete(job.id);
+                                }}><img height="20px" width="20px" src="https://img.icons8.com/?size=100&id=FgOBVsURv5ar&format=png&color=000000" alt="Delete" />Delete</button>
                         </div>
                     </div>
                 }
