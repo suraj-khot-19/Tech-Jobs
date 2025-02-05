@@ -23,4 +23,16 @@ public class PostServiceImpl implements PostService {
     public Post addNewPost(Post post) {
         return repo.save(post);
     }
+
+    @Override
+    public boolean deleteById(String id) {
+        Post post=repo.findById(id).orElse(null);
+        if (post!=null){
+            repo.deleteById(id);
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }

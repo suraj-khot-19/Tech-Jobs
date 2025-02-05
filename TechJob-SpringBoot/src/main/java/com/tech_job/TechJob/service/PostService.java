@@ -8,4 +8,6 @@ public interface PostService {
     List<Post> getAllPost();
 
     Post addNewPost(Post post);
+
+    boolean deleteById(String id);
 }

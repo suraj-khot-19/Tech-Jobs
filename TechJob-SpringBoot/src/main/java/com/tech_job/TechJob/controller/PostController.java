@@ -34,4 +34,13 @@ public class PostController {
     public ResponseEntity<List<Post>> searchByKey(@PathVariable(name = "key") String key) {
         return new ResponseEntity<>(searchService.searchByKey(key), HttpStatus.OK);
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteById(@PathVariable(name = "id") String id){
+        boolean isDeleted=service.deleteById(id);
+        if (isDeleted)
+            return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully!");
+        else
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Job post not found!");
+    }
 }
