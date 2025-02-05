@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom';
 import SingleJobPost from './SingleJobPost';
 import { toast } from 'react-toastify';
-function Jobs({ data, setData, searchKey, fetchData,headToTop, setHeadToTop }) {
+function Jobs({ data, searchKey, fetchData, headToTop }) {
     // state
     const [loading, setloading] = useState(true);
 
@@ -15,24 +14,6 @@ function Jobs({ data, setData, searchKey, fetchData,headToTop, setHeadToTop }) {
     setTimeout(() => {
         setloading(false);
     }, 800);
-
-    // Handle search functionality
-    const handelOnClick = async (e) => {
-        e.preventDefault();
-        try {
-            setHeadToTop(searchKey); /// add heading as a search key
-
-            const url = `http://localhost:8080/api/tech/job/posts/search/${searchKey}`;
-            const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error("Search failed");
-            }
-            const json = await response.json();
-            setData(json);
-        } catch (error) {
-            console.error("Search error:", error);
-        }
-    };
 
     // handel delete functionality
     const handelDelete = async (id) => {
@@ -61,32 +42,6 @@ function Jobs({ data, setData, searchKey, fetchData,headToTop, setHeadToTop }) {
     }
     return (
         <>
-            {/* 
-            <nav className="navbar bg-body-tertiary" data-bs-theme="dark">
-                <div className="container-fluid">
-                    <div className="navbar-brand">
-                        <Link className="navbar-brand ms-3" to="/">Tech Job</Link>
-                    </div>
-                    <ul className="navbar-nav d-flex ms-auto">
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/">Home</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/hire">Hire</Link>
-                        </li>
-                    </ul>
-
-                    <form className="d-flex" role="search">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={searchKey} name="key"
-                            onChange={(e) => setSearchKey(e.target.value)}
-                        />
-                        <button disabled={searchKey.length < 2} className="btn btn-outline-warning" type="submit" onClick={handelOnClick}>Search</button>
-                    </form>
-                </div>
-            </nav>
-            */
-           }
-
             {/* all data */}
             <div className='container' style={{ minHeight: "calc(100vh - 57px)" }} >
 

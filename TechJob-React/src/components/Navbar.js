@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 export default function Navbar({ searchKey, setSearchKey, setData, setHeadToTop,fetchData }) {
     //react router dom
