@@ -74,7 +74,31 @@ display them to the user. The React app is designed with components that handle:
 - Fetching job posts from the backend.
 - Displaying job details, including descriptions, required skills, and experience.
 - Allowing users to filter job posts.
+- **Output**
 
+    - Home screen
+      <img src="output/f1.png" alt="img"/>
+
+    - Adding new Job Post
+      <img src="output/f2.png" alt="img"/>
+
+    - Added Post with toast message
+      <img src="output/f3.png" alt="img"/>
+
+    - Delete btn
+      <img src="output/f4.png" alt="img"/>
+
+    - Deleted job and toast message
+      <img src="output/f5.png" alt="img"/>
+
+    - Edit btn
+      <img src="output/f6.png" alt="img"/>
+
+    - Editing Post form
+      <img src="output/f7.png" alt="img"/>
+
+    - Toast message after update
+      <img src="output/f8.png" alt="img"/>
 ---
 
 ## Installation

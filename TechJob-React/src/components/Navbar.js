@@ -56,7 +56,7 @@ export default function Navbar({ searchKey, setSearchKey, setData, setHeadToTop,
                         </li>
                     </ul>
                     {
-                        location.pathname !== '/hire' &&
+                        location.pathname !== '/hire' && location.pathname !== '/'  &&
                         (
                             <form className="d-flex" role="search">
                                 <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={searchKey} name="key"
