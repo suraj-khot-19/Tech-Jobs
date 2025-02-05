@@ -36,11 +36,21 @@ public class PostController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteById(@PathVariable(name = "id") String id){
-        boolean isDeleted=service.deleteById(id);
+    public ResponseEntity<String> deleteById(@PathVariable(name = "id") String id) {
+        boolean isDeleted = service.deleteById(id);
         if (isDeleted)
             return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully!");
         else
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Job post not found!");
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String> updateById(@PathVariable(name = "id") String id, @RequestBody Post updatePost) {
+        boolean isUpdated = service.updatePost(id, updatePost);
+        if (isUpdated) {
+            return ResponseEntity.status(HttpStatus.OK).body("Post updated successfully!");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Post not found");
+        }
     }
 }

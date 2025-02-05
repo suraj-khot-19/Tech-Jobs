@@ -10,4 +10,6 @@ public interface PostService {
     Post addNewPost(Post post);
 
     boolean deleteById(String id);
+
+    boolean updatePost(String id, Post updatePost);
 }
