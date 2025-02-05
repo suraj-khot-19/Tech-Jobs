@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import SingleFeild from "./SingleFeild";
+import {  toast } from 'react-toastify';
 
 function Hire() {
     const navigate = useNavigate();
@@ -32,29 +34,34 @@ function Hire() {
 
     const handleSub = async (e) => {
         e.preventDefault();
-        // console.log(data);
         setloading(true);
 
-        const url = "http://localhost:8080/api/tech/job/new/post";
-
-        const response = await fetch(url, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-        });
-
-        const json = await response.json();
-        setTimeout(() => {
-            setloading(false);
-            navigate("/");
-        }, 1500);
+        try {
+            const url = "http://localhost:8080/api/tech/job/new/post";
+            const res = await fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            });
+            if (res.status === 200) {
+                toast.success("Job post added successfully! ");
+            } else {
+                toast.error("Failed to add job post.");
+            }
+        } catch (error) {
+            toast.error("An error occurred while adding the job post.");
+        } finally {
+            setTimeout(() => {
+                setloading(false);
+                navigate("/");
+            }, 1500);
+        }
     };
 
 
     return (
         <>
             <div className="container" style={{ height: "100vh" }} >
-
 
                 {/* Loading Overlay */}
                 {loading && (
@@ -67,28 +74,15 @@ function Hire() {
 
                 <form onSubmit={handleSub}>
                     {/* Profile */}
-                    <div className="row mb-4">
-                        <label htmlFor="profile" className="col-sm-2 col-form-label">Profile</label>
-                        <div className="col-sm-10">
-                            <input type="text" className="form-control" id="profile" name="profile" value={data.profile} onChange={handleOnChange} />
-                        </div>
-                    </div>
+                    <SingleFeild title="Profile" handleOnChange={handleOnChange} value={data.profile} name="profile" />
 
                     {/* Description */}
-                    <div className="row mb-4">
-                        <label htmlFor="desc" className="col-sm-2 col-form-label">Description</label>
-                        <div className="col-sm-10">
-                            <textarea type="text" className="form-control" id="desc" name="disc" value={data.disc} onChange={handleOnChange} rows={3} />
-                        </div>
-                    </div>
+                    <SingleFeild title="Description" handleOnChange={handleOnChange} value={data.disc} name="disc" />
+
 
                     {/* Experience */}
-                    <div className="row mb-4">
-                        <label htmlFor="exp" className="col-sm-2 col-form-label">Experience</label>
-                        <div className="col-sm-10">
-                            <input type="number" className="form-control" id="exp" name="exp" value={data.exp} min="0" onChange={handleOnChange} />
-                        </div>
-                    </div>
+                    <SingleFeild title="Experience" handleOnChange={handleOnChange} value={data.exp} name="exp" />
+
 
                     {/* Skills */}
                     <div className="row mb-4">
@@ -128,9 +122,7 @@ function Hire() {
                             ←  Back
                         </button>
                     </div>
-
                 </form>
-
             </div>
         </>
     );
