@@ -1,19 +1,24 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import SingleFeild from "./SingleFeild";
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 function Hire() {
+    // react router dom
     const navigate = useNavigate();
+    const location = useLocation();
+    const { editData = [], editing = false } = location.state || {}; // data from dom
 
+    //skills
     let arr = ["Java", "Spring Boot", "SQL", "Hibernate", "MongoDB", "React", "HTML/CSS", "JavaScript"];
 
+    //data with states
     const [data, setData] = useState({
-        profile: "", exp: 1, skills: [], disc: "",
+        id: editData.id || "", profile: editData.profile || "", exp: editData.exp || 1, skills: editData.skills || [], desc: editData.desc || "",
     });
-
     const [loading, setloading] = useState(false)
 
+    // handel feild change
     const handleOnChange = (e) => {
         const { name, value, type, checked } = e.target;
 
@@ -32,33 +37,33 @@ function Hire() {
         }
     };
 
+    // update or add functionality
     const handleSub = async (e) => {
         e.preventDefault();
         setloading(true);
 
         try {
-            const url = "http://localhost:8080/api/tech/job/new/post";
+            const url = editing ? `http://localhost:8080/api/tech/job/update/${data.id}` : "http://localhost:8080/api/tech/job/new/post";
+            const method = editing ? "PUT" : "POST";
+
             const res = await fetch(url, {
-                method: "POST",
+                method: method,
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data)
             });
             if (res.status === 200) {
-                toast.success("Job post added successfully! ");
+                toast.success(editing ? "Job updated successfully!" : "Job post added successfully! ");
             } else {
-                toast.error("Failed to add job post.");
+                toast.error(editing ? "Failed to update a job" : "Failed to add job post.");
             }
         } catch (error) {
             toast.error("An error occurred while adding the job post.");
         } finally {
-            setTimeout(() => {
-                setloading(false);
-                navigate("/");
-            }, 1500);
+            setloading(false);
+            editing ? navigate("/jobs") : navigate("/");
         }
     };
-
-
+    
     return (
         <>
             <div className="container" style={{ height: "100vh" }} >
@@ -73,16 +78,9 @@ function Hire() {
                 <h1 className="text-center py-4">💻 Tech Job 💸</h1>
 
                 <form onSubmit={handleSub}>
-                    {/* Profile */}
                     <SingleFeild title="Profile" handleOnChange={handleOnChange} value={data.profile} name="profile" />
-
-                    {/* Description */}
-                    <SingleFeild title="Description" handleOnChange={handleOnChange} value={data.disc} name="disc" />
-
-
-                    {/* Experience */}
+                    <SingleFeild title="Description" handleOnChange={handleOnChange} value={data.desc} name="desc" />
                     <SingleFeild title="Experience" handleOnChange={handleOnChange} value={data.exp} name="exp" />
-
 
                     {/* Skills */}
                     <div className="row mb-4">
@@ -90,13 +88,7 @@ function Hire() {
                         <div className="col-sm-10">
                             {arr.map((skill, index) => (
                                 <div className="form-check" key={index}>
-                                    <input
-                                        className="form-check-input"
-                                        type="checkbox"
-                                        id={`skill-${index}`}
-                                        name={skill}
-                                        checked={data.skills.includes(skill)}
-                                        onChange={handleOnChange}
+                                    <input className="form-check-input" type="checkbox" id={`skill-${index}`} name={skill} checked={data.skills.includes(skill)} onChange={handleOnChange}
                                     />
                                     <label className="form-check-label" htmlFor={`skill-${index}`}>
                                         {skill}
@@ -114,13 +106,13 @@ function Hire() {
                         </label>
                     </div>
                     <div className="d-flex justify-content-between align-items-center">
-                        <button disabled={data.profile.trim() === "" || data.disc.trim() === "" || data.skills.length === 0}
+
+                        {/* post or editing btn */}
+                        <button disabled={data.exp === 0 || data.profile.trim() === "" || data.desc.trim() === "" || data.skills.length === 0}
                             type="submit" className="btn btn-primary btn-lg px-4 py-2">
-                            Post
+                            {editing ? "Update Post" : "Post"}
                         </button>
-                        <button onClick={() => navigate("/")} className="btn btn-primary btn-lg px-4 py-2">
-                            ←  Back
-                        </button>
+                        <button onClick={() => navigate("/")} className="btn btn-primary btn-lg px-4 py-2">←  Back </button>
                     </div>
                 </form>
             </div>

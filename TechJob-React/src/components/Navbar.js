@@ -65,7 +65,7 @@ export default function Navbar({ searchKey, setSearchKey, setData, setHeadToTop,
                                 {
                                     clickedSearch ?
                                         (
-                                            <button className="btn btn-outline-warning" type="submit" onClick={handelClear}>Clear</button>
+                                            <button className="btn btn-outline-danger" type="submit" onClick={handelClear}>Clear</button>
                                         ) : (
                                             <button disabled={searchKey.length < 2} className="btn btn-outline-warning" type="submit" onClick={handelOnClick}>Search</button>
                                         )
