@@ -49,8 +49,20 @@ Key components of the backend:
     - All Post End Point
       <img src="output/p2.png" alt="img"/>
 
-    - Adding Job Post Endpoint
+    - Adding Job Post End point
       <img src="output/p1.png" alt="img"/>
+
+    - delete Post By id (if post **not** exists) End Point
+      <img src="output/p15.png" alt="img"/>
+
+    - delete Post By id (if post exists) End point
+      <img src="output/p16.png" alt="img"/>
+
+    - Update Post (if exists) End Point
+      <img src="output/p17.png" alt="img"/>
+
+    - Update Post (if **not** exists) End point
+      <img src="output/p18.png" alt="img"/>
 
 ---
 
